@@ -1,0 +1,102 @@
+{
+  "name": "John W. Paulson",
+  "title": "Prompt Designer • Generative AI Systems • Content Framework Architect",
+  "location": "Phoenix, AZ",
+  "email": "contact@johnwpaulson.com",
+  "phone": "(480) 229-5384",
+  "linkedin": "https://www.linkedin.com/in/john-w-paulson/",
+  "summary": "Prompt Designer and Generative AI systems builder with 3+ years designing, testing, and iterating on structured prompt frameworks that produce reliable, high-quality content at scale. Expert at translating ambiguous goals into rule-based prompt architectures with defined schemas, constraints, and evaluation criteria. Proven track record of building content generation systems, identifying failure patterns through systematic testing, and deploying scalable LLM workflows across enterprise platforms. Comfortable working deep in JSON, structured outputs, and test harnesses. Bias toward rapid prototyping, measurement, and iteration.",
+  "experience": [
+    {
+      "company": "Launch Consulting",
+      "title": "Prompt Designer / AI Engineer",
+      "location": "Remote",
+      "dates": "February 2025 - Present",
+      "bullets": [
+        "Designed and deployed structured prompt frameworks for LLM-powered content generation workflows, defining schemas, constraints, and output rules to enforce consistency across multiple formats and topic domains.",
+        "Built and maintained prompt evaluation systems, systematically testing outputs to identify failure patterns, hallucination risks, and retrieval gaps, then iterating prompts toward higher accuracy and repeatability.",
+        "Authored JSON-structured output schemas and validation rules used across multi-team internal tools, enabling reliable generative content that scales across high-volume user journeys.",
+        "Engineered retrieval pipelines and guardrails that reduced hallucinations and improved content quality scores across accuracy, engagement, and factual consistency dimensions.",
+        "Partnered cross-functionally with product and engineering teams to rapidly prototype, validate, and refine new content formats from concept through production deployment."
+      ]
+    },
+    {
+      "company": "GoDaddy",
+      "title": "Conversation Designer / Prompt Engineer",
+      "location": "Remote",
+      "dates": "April 2022 - April 2024",
+      "bullets": [
+        "Architected and scaled a prompt system that transitioned rule-based content delivery to LLM-driven generative output, producing a 30% increase in content accuracy and a 5% reduction in response latency.",
+        "Defined prompt rules, content constraints, and style schemas aligned with Microsoft Style Guide standards, establishing a repeatable framework for consistent content generation at scale.",
+        "Built and ran systematic output evaluation cycles, identifying failure patterns and content gaps across topic domains, driving iterative prompt refinement that increased containment by 47% and reduced support costs by an estimated $1.03 million.",
+        "Developed new content formats and expanded existing ones by collaborating with product teams on structured content workflows using spreadsheets, Jira, and AI-assisted tooling.",
+        "Partnered with engineering on information retrieval optimization, improving the accuracy and engagement of generated content across structured query flows."
+      ]
+    },
+    {
+      "company": "GoDaddy",
+      "title": "Advanced Technical Support",
+      "location": "Phoenix, AZ",
+      "dates": "April 2018 - April 2022",
+      "bullets": [
+        "Resolved 85% of technical issues across GoDaddy's product ecosystem, demonstrating strong analytical problem-solving and systematic debugging skills.",
+        "Led the 'Everybody Writes' initiative, improving content accuracy and reducing ticket resolution cycle time from 7 days to under 72 hours through structured content standards.",
+        "Rebuilt onboarding documentation and processes, cutting training time by one week through clear, structured written content and knowledge base design."
+      ]
+    }
+  ],
+  "tools": {
+    "Prompt Engineering": [
+      "Structured prompt frameworks",
+      "JSON output schemas",
+      "Rule-based constraints",
+      "Validation rules",
+      "Test harnesses",
+      "Failure pattern analysis",
+      "Content quality evaluation"
+    ],
+    "AI / LLMs": [
+      "GPT-4/5",
+      "ChatGPT",
+      "Copilot",
+      "Claude",
+      "Gemini",
+      "RAG pipelines",
+      "Guardrails",
+      "Model evaluation",
+      "Generative content systems"
+    ],
+    "Conversational Systems": [
+      "Dialogflow CX",
+      "Conversational Agents",
+      "NLU/NLP",
+      "Intent architecture",
+      "Role-based routing"
+    ],
+    "Platforms & Tools": [
+      "Jira",
+      "Asana",
+      "Trello",
+      "Zendesk",
+      "Tableau",
+      "Elastic",
+      "Microsoft Office Suite"
+    ],
+    "Documentation": [
+      "Technical writing",
+      "Knowledge base design",
+      "Style guide authoring",
+      "Content format development"
+    ],
+    "Coding": [
+      "Python (scripting and structured data manipulation)"
+    ]
+  },
+  "education": [
+    {
+      "school": "Saguaro High School",
+      "location": "Scottsdale, AZ",
+      "dates": "2007 - 2011"
+    }
+  ]
+}

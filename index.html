@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John W. Paulson — Prompt Designer &amp; Generative AI Systems</title>
+  <meta name="description" content="Portfolio and resume of John W. Paulson, Prompt Designer and Generative AI systems builder. Ask the built-in AI assistant about his experience." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <span class="brand">{ JWP }</span>
+      <nav>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">Portfolio</p>
+      <h1 id="hero-name">Loading…</h1>
+      <p class="hero-title" id="hero-title"></p>
+      <p class="hero-meta">
+        <span id="hero-location"></span>
+        <span class="dot">·</span>
+        <a id="hero-email" href="#"></a>
+        <span class="dot">·</span>
+        <a id="hero-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+      <p class="summary" id="summary-text"></p>
+    </section>
+
+    <section id="experience" class="wrap section">
+      <h2>Experience</h2>
+      <div id="experience-list" class="experience-list"></div>
+    </section>
+
+    <section id="skills" class="wrap section">
+      <h2>Skills &amp; Tools</h2>
+      <div id="skills-grid" class="skills-grid"></div>
+    </section>
+
+    <section id="education" class="wrap section">
+      <h2>Education</h2>
+      <div id="education-list" class="education-list"></div>
+    </section>
+
+    <section id="contact" class="wrap section contact-section">
+      <h2>Contact</h2>
+      <p>Want to talk shop about prompt architecture, evaluation pipelines, or generative content systems?</p>
+      <p>
+        <a id="contact-email" href="#"></a>
+        <span class="dot">·</span>
+        <a id="contact-linkedin" href="#" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>&copy; <span id="year"></span> John W. Paulson. Ask the assistant in the corner anything about this resume.</p>
+  </footer>
+
+  <div id="chat-widget">
+    <button id="chat-toggle" aria-label="Open chat about John's resume">
+      <span class="chat-toggle-icon">💬</span>
+      <span class="chat-toggle-label">Ask about my resume</span>
+    </button>
+    <div id="chat-panel" class="chat-panel">
+      <div class="chat-panel-header">
+        <span>Resume Assistant</span>
+        <button id="chat-close" aria-label="Close chat">✕</button>
+      </div>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message assistant">
+          Hi! I'm an AI assistant trained on John's resume. Ask me about his experience, skills, or projects.
+        </div>
+        <div class="chat-suggestions">
+          <button type="button" class="suggestion-chip">What's his AI/LLM experience?</button>
+          <button type="button" class="suggestion-chip">Tell me about his time at GoDaddy</button>
+          <button type="button" class="suggestion-chip">What are his strongest skills?</button>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-form">
+        <input id="chat-input" type="text" placeholder="Ask a question…" autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

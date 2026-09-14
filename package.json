@@ -1,0 +1,6 @@
+{
+  "name": "paulsonportfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "John W. Paulson's portfolio site and AI resume assistant, deployed on Vercel."
+}
