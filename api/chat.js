@@ -46,13 +46,18 @@ module.exports = async (req, res) => {
   }));
 
   try {
+    const headers = {
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    };
+    if (process.env.ANTHROPIC_WORKSPACE_ID) {
+      headers['anthropic-workspace-id'] = process.env.ANTHROPIC_WORKSPACE_ID;
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
+      headers,
       body: JSON.stringify({
         model: process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001',
         max_tokens: 512,
