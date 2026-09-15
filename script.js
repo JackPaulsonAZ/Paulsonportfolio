@@ -65,10 +65,20 @@ const chatInput = document.getElementById("chat-input");
 const chatMessages = document.getElementById("chat-messages");
 
 let history = [];
+const initialMessagesHTML = chatMessages.innerHTML;
+
+function resetChat() {
+  history = [];
+  chatMessages.innerHTML = initialMessagesHTML;
+}
 
 function togglePanel(open) {
   chatPanel.classList.toggle("open", open);
-  if (open) chatInput.focus();
+  if (open) {
+    chatInput.focus();
+  } else {
+    resetChat();
+  }
 }
 
 chatToggle.addEventListener("click", () => {
@@ -123,8 +133,7 @@ chatForm.addEventListener("submit", (e) => {
   sendMessage(text);
 });
 
-document.querySelectorAll(".suggestion-chip").forEach((chip) => {
-  chip.addEventListener("click", () => {
-    sendMessage(chip.textContent);
-  });
+chatMessages.addEventListener("click", (e) => {
+  const chip = e.target.closest(".suggestion-chip");
+  if (chip) sendMessage(chip.textContent);
 });
