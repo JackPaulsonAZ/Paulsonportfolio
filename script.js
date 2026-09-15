@@ -56,6 +56,44 @@ function renderResume(resume) {
 
 loadResume();
 
+// --- Human verification (Cloudflare Turnstile) ---
+const TURNSTILE_SITE_KEY = "0x4AAAAAAE2PAtvP59BgqN5t";
+let turnstileWidgetId = null;
+let pendingTurnstileResolve = null;
+let pendingTurnstileReject = null;
+
+window.initTurnstile = function initTurnstile() {
+  turnstileWidgetId = window.turnstile.render("#turnstile-container", {
+    sitekey: TURNSTILE_SITE_KEY,
+    appearance: "interaction-only",
+    execution: "execute",
+    callback: (token) => {
+      if (pendingTurnstileResolve) pendingTurnstileResolve(token);
+      pendingTurnstileResolve = null;
+      pendingTurnstileReject = null;
+      window.turnstile.reset(turnstileWidgetId);
+    },
+    "error-callback": () => {
+      if (pendingTurnstileReject) pendingTurnstileReject(new Error("Turnstile verification failed"));
+      pendingTurnstileResolve = null;
+      pendingTurnstileReject = null;
+      window.turnstile.reset(turnstileWidgetId);
+    },
+  });
+};
+
+function getTurnstileToken() {
+  return new Promise((resolve, reject) => {
+    if (!window.turnstile || turnstileWidgetId === null) {
+      reject(new Error("Verification widget not ready yet"));
+      return;
+    }
+    pendingTurnstileResolve = resolve;
+    pendingTurnstileReject = reject;
+    window.turnstile.execute(turnstileWidgetId);
+  });
+}
+
 // --- Chat widget ---
 const chatToggle = document.getElementById("chat-toggle");
 const chatClose = document.getElementById("chat-close");
@@ -104,10 +142,12 @@ async function sendMessage(text) {
   typingEl.classList.add("typing");
 
   try {
+    const turnstileToken = await getTurnstileToken();
+
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ messages: history }),
+      body: JSON.stringify({ messages: history, turnstileToken }),
     });
     const data = await res.json();
     typingEl.remove();
@@ -121,7 +161,7 @@ async function sendMessage(text) {
     history.push({ role: "assistant", content: data.reply });
   } catch (err) {
     typingEl.remove();
-    appendMessage("assistant", "Network error — please try again.");
+    appendMessage("assistant", "Couldn't verify you're human — please try again.");
   }
 }
 

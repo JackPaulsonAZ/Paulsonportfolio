@@ -6,6 +6,7 @@ Personal portfolio site for John W. Paulson — Prompt Designer & Generative AI 
 
 - **Frontend:** plain HTML/CSS/JS (no build step, no framework). `index.html` renders itself from [`content/resume.json`](content/resume.json), the single source of truth for all resume content.
 - **Resume assistant:** [`api/chat.js`](api/chat.js), a Vercel serverless function. It reads `content/resume.json`, builds a system prompt from it, and calls the Claude API. The API key never touches the browser.
+- **Bot protection:** [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) gates the chat endpoint. Every message send silently fetches a fresh Turnstile token (invisible to real visitors in the common case), which `api/chat.js` verifies with Cloudflare before calling Claude — so a script hitting `/api/chat` directly, without a real browser, can't get through.
 
 Because it's plain static HTML/CSS/JS with a Vercel Functions endpoint, there's no local build tooling required — this repo has no `node_modules` and no bundler step.
 
@@ -30,6 +31,7 @@ then open `http://localhost:8000`. The chat widget will show a network error loc
 3. In the project's **Settings → Environment Variables**, add:
    - `ANTHROPIC_API_KEY` — your Claude API key from the [Anthropic Console](https://console.anthropic.com).
    - `ANTHROPIC_MODEL` (optional) — defaults to `claude-haiku-4-5-20251001` if unset.
+   - `TURNSTILE_SECRET_KEY` — from the [Cloudflare Turnstile dashboard](https://dash.cloudflare.com/?to=/:account/turnstile), same site as the public site key hardcoded in `script.js` (`TURNSTILE_SITE_KEY`).
 4. Deploy. Every push to `main` will auto-deploy; PRs get their own preview URLs.
 
 See `.env.example` for the environment variables used locally with `vercel dev`.

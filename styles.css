@@ -342,6 +342,12 @@ nav a:hover {
   border-color: var(--accent);
 }
 
+#turnstile-container {
+  display: flex;
+  justify-content: center;
+  padding: 4px 12px 0;
+}
+
 .chat-form {
   display: flex;
   gap: 8px;

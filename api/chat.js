@@ -8,6 +8,24 @@ const resume = JSON.parse(
 const MAX_HISTORY = 12;
 const MAX_MESSAGE_LENGTH = 2000;
 
+async function verifyTurnstileToken(token, remoteIp) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return { ok: false, reason: 'Server is missing TURNSTILE_SECRET_KEY.' };
+  if (!token) return { ok: false, reason: 'Missing verification token.' };
+
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ secret, response: token, remoteip: remoteIp }),
+  });
+  const data = await response.json();
+  if (!data.success) {
+    console.error('Turnstile verification failed:', data['error-codes']);
+    return { ok: false, reason: 'Human verification failed.' };
+  }
+  return { ok: true };
+}
+
 function buildSystemPrompt() {
   return `You are an AI assistant embedded on John W. Paulson's personal portfolio website. Visitors (recruiters, hiring managers, engineers) ask you questions about John's professional background, skills, and experience.
 
@@ -34,9 +52,16 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const { messages } = req.body || {};
+  const { messages, turnstileToken } = req.body || {};
   if (!Array.isArray(messages) || messages.length === 0) {
     res.status(400).json({ error: 'Request must include a non-empty messages array.' });
+    return;
+  }
+
+  const remoteIp = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || undefined;
+  const verification = await verifyTurnstileToken(turnstileToken, remoteIp);
+  if (!verification.ok) {
+    res.status(403).json({ error: verification.reason });
     return;
   }
 

@@ -85,6 +85,7 @@
           <button type="button" class="suggestion-chip">What are his strongest skills?</button>
         </div>
       </div>
+      <div id="turnstile-container"></div>
       <form id="chat-form" class="chat-form">
         <input id="chat-input" type="text" placeholder="Ask a question…" autocomplete="off" />
         <button type="submit">Send</button>
@@ -93,5 +94,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=initTurnstile&render=explicit" async defer></script>
 </body>
 </html>
